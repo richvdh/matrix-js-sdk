@@ -62,27 +62,12 @@ jobs:
                   path: |
                       coverage
                       !coverage/lcov-report
-
-    matrix-react-sdk:
-        name: Downstream test matrix-react-sdk
-        if: github.event_name == 'merge_group'
-        uses: matrix-org/matrix-react-sdk/.github/workflows/tests.yml@develop
-        with:
-            disable_coverage: true
-            matrix-js-sdk-sha: ${{ github.sha }}
-
-    # Hook for branch protection to skip downstream testing outside of merge queues
-    # and skip sonarcloud coverage within merge queues
-    downstream:
-        name: Downstream tests
+    skip-sonar:
+        name: Skip SonarCloud if coverage is disabled
+        if: env.ENABLE_COVERAGE == 'false'
         runs-on: ubuntu-latest
-        if: always()
-        needs:
-            - matrix-react-sdk
         steps:
-            - name: Skip SonarCloud on merge queues
-              if: env.ENABLE_COVERAGE == 'false'
-              uses: Sibz/github-status-action@faaa4d96fecf273bd762985e0e7f9f933c774918 # v1
+            - uses: Sibz/github-status-action@faaa4d96fecf273bd762985e0e7f9f933c774918 # v1
               with:
                   authToken: ${{ secrets.GITHUB_TOKEN }}
                   state: success
@@ -91,5 +76,3 @@ jobs:
                   sha: ${{ github.sha }}
                   target_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-            - if: needs.matrix-react-sdk.result != 'skipped' && needs.matrix-react-sdk.result != 'success'
-              run: exit 1

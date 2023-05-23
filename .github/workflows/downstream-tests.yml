@@ -1,0 +1,33 @@
+name: Downstream tests
+on:
+    pull_request: {}
+    merge_group:
+        types: [checks_requested]
+    push:
+        branches: [develop, master]
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+jobs:
+    matrix-react-sdk:
+        name: Downstream test matrix-react-sdk
+        if: github.event_name == 'merge_group'
+        uses: matrix-org/matrix-react-sdk/.github/workflows/tests.yml@develop
+        with:
+            disable_coverage: true
+            matrix-js-sdk-sha: ${{ github.sha }}
+
+    # A job which waits for the other jobs to be complete or skipped, thus
+    # making it suitable for a branch protection rule
+    done:
+        name: Downstream tests
+        runs-on: ubuntu-latest
+        if: always()
+        needs:
+            - matrix-react-sdk
+        steps:
+            - uses: matrix-org/done-action@v2
+              with:
+                  needs: ${{ toJSON(needs) }}
+                  skippable: |
+                      matrix-react-sdk
