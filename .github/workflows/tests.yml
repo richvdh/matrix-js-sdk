@@ -64,10 +64,10 @@ jobs:
                       !coverage/lcov-report
     skip-sonar:
         name: Skip SonarCloud if coverage is disabled
-        if: env.ENABLE_COVERAGE == 'false'
         runs-on: ubuntu-latest
         steps:
-            - uses: Sibz/github-status-action@faaa4d96fecf273bd762985e0e7f9f933c774918 # v1
+            - if: "env.ENABLE_COVERAGE == 'false'"
+              uses: Sibz/github-status-action@faaa4d96fecf273bd762985e0e7f9f933c774918 # v1
               with:
                   authToken: ${{ secrets.GITHUB_TOKEN }}
                   state: success
