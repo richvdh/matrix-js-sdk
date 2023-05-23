@@ -31,6 +31,7 @@ jobs:
         if: always()
         needs:
             - matrix-react-sdk
+            - build-element-web
         steps:
             - uses: matrix-org/done-action@v2
               with:
