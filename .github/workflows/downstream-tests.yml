@@ -11,10 +11,17 @@ concurrency:
 jobs:
     matrix-react-sdk:
         name: Run matrix-react-sdk tests
-        if: github.event_name == 'merge_group'
+        # if: github.event_name == 'merge_group'
         uses: matrix-org/matrix-react-sdk/.github/workflows/tests.yml@develop
         with:
             disable_coverage: true
+            matrix-js-sdk-sha: ${{ github.sha }}
+
+    build-element-web:
+        name: Build a copy of element-web
+        # if: github.event_name == 'merge_group'
+        uses: richvdh/matrix-react-sdk/.github/workflows/element-web.yml@rav_work
+        with:
             matrix-js-sdk-sha: ${{ github.sha }}
 
     # A job which waits for the other jobs to be complete or skipped, thus
