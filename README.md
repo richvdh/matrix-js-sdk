@@ -1,3 +1,5 @@
+2
+
 [![npm](https://img.shields.io/npm/v/matrix-js-sdk)](https://www.npmjs.com/package/matrix-js-sdk)
 ![Tests](https://github.com/matrix-org/matrix-js-sdk/actions/workflows/tests.yml/badge.svg)
 ![Static Analysis](https://github.com/matrix-org/matrix-js-sdk/actions/workflows/static_analysis.yml/badge.svg)
@@ -6,7 +8,7 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=matrix-js-sdk&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=matrix-js-sdk)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=matrix-js-sdk&metric=bugs)](https://sonarcloud.io/summary/new_code?id=matrix-js-sdk)
 
-# Matrix JavaScript SDK1
+# Matrix JavaScript SDK
 
 This is the [Matrix](https://matrix.org) Client-Server SDK for JavaScript and TypeScript. This SDK can be run in a
 browser or in Node.js.
