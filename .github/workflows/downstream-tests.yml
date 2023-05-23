@@ -10,7 +10,7 @@ concurrency:
     cancel-in-progress: true
 jobs:
     matrix-react-sdk:
-        name: Downstream test matrix-react-sdk
+        name: Run matrix-react-sdk tests
         if: github.event_name == 'merge_group'
         uses: matrix-org/matrix-react-sdk/.github/workflows/tests.yml@develop
         with:
@@ -20,7 +20,6 @@ jobs:
     # A job which waits for the other jobs to be complete or skipped, thus
     # making it suitable for a branch protection rule
     done:
-        name: Downstream tests
         runs-on: ubuntu-latest
         if: always()
         needs:
