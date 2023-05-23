@@ -10,7 +10,7 @@ concurrency:
     cancel-in-progress: true
 jobs:
     matrix-react-sdk:
-        name: Run matrix-react-sdk tests
+        name: matrix-react-sdk tests
         # if: github.event_name == 'merge_group'
         uses: matrix-org/matrix-react-sdk/.github/workflows/tests.yml@develop
         with:
@@ -18,7 +18,7 @@ jobs:
             matrix-js-sdk-sha: ${{ github.sha }}
 
     build-element-web:
-        name: Build a copy of element-web
+        name: Build element-web
         # if: github.event_name == 'merge_group'
         uses: richvdh/matrix-react-sdk/.github/workflows/element-web.yaml@rav_work
         with:
