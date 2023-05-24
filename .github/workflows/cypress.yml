@@ -1,8 +1,10 @@
-# Triggers after the "Downstream tests" build has finished
+# Triggers after the "Downstream artifacts" build has finished, to run the
+# cypress tests (with access to repo secrets)
+
 name: matrix-react-sdk Cypress End to End Tests
 on:
     workflow_run:
-        workflows: ["Downstream tests"]
+        workflows: ["Build downstream artifacts"]
         types:
             - completed
 
