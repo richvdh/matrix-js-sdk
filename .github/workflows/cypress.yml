@@ -24,3 +24,6 @@ jobs:
         secrets:
             # secrets are not automatically shared with called workflows, so share the cypress dashboard key
             CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        with:
+            react-sdk-repository: richvdh/matrix-react-sdk  # FIXME
+            rust-crypto: true

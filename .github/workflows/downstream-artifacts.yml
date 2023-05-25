@@ -12,6 +12,7 @@ jobs:
     build-element-web:
         name: Build element-web
         # if: github.event_name == 'merge_group'
-        uses: richvdh/matrix-react-sdk/.github/workflows/element-web.yaml@rav_work
+        uses: richvdh/matrix-react-sdk/.github/workflows/element-web.yaml@rav_work  # FIXME
         with:
             matrix-js-sdk-sha: ${{ github.sha }}
+            react-sdk-repository: richvdh/matrix-react-sdk # FIXME
