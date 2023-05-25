@@ -14,11 +14,13 @@ concurrency:
 
 jobs:
     cypress:
+        name: Cypress
+        uses: richvdh/matrix-react-sdk/.github/workflows/cypress.yaml@rav_work
         permissions:
             actions: read
             issues: read
             statuses: write
             pull-requests: read
-        name: Cypress
-        uses: richvdh/matrix-react-sdk/.github/workflows/cypress.yaml@rav_work
-
+        secrets:
+            # secrets are not automatically shared with called workflows, so share the cypress dashboard key
+            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
